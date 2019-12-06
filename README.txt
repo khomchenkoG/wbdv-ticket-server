@@ -13,7 +13,8 @@ body:
 	"username": "george@gmail.com",
 	"password": "12345",
 	"firstName": "George",
-	"lastName": "Khomchenko"
+	"lastName": "Khomchenko",
+	"type": "admin"
 }
 
 GET /api/users
@@ -26,6 +27,26 @@ POST /api/users/{username}/events/{eId}
 DELETE /api/users/{username}/events/{eId}
 
 GET /api/users/{username}/event
+
+===================USERS REVIEWS====================
+====================================================
+
+POST /api/users/{username}/reviews/{eventId}
+body:
+{
+review: "Great event!"
+}
+
+DELETE /api/users/{username}/reviews/{reviewId}
+
+PUT /api/users/{username}/reviews/{reviewId}
+body:
+{
+review: "Bad event!"
+}
+
+GET /api/users/{username}/reviews/?eventId=1235542 -----> Optional!
+
 
 ======================EVENTS========================
 ====================================================

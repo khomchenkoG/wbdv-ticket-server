@@ -3,6 +3,7 @@ package com.example.wbdvticketprojectserver.models;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -13,6 +14,7 @@ public class User {
     private String password;
     private String firstName;
     private String lastName;
+    private String type;
 
     @ManyToMany
     @JoinTable(
@@ -21,6 +23,10 @@ public class User {
             inverseJoinColumns = @JoinColumn(name = "event_id"))
     @JsonIgnore
     List<Event> events;
+
+    @JsonIgnore
+    @OneToMany(mappedBy = "user", cascade = CascadeType.ALL)
+    private List<EventReview> reviews = new ArrayList<>();
 
     public String getUsername() {
         return username;
@@ -33,6 +39,14 @@ public class User {
             event.getFollowers()
                     .add(this);
         }}
+
+    public List<EventReview> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<EventReview> reviews) {
+        this.reviews = reviews;
+    }
 
     public void unFollowEvent(Event event) {
         this.events.remove(event);
@@ -84,5 +98,13 @@ public class User {
         this.password = newUser.password;
         this.firstName = newUser.firstName;
         this.lastName = newUser.lastName;
+    }
+
+    public String getType() {
+        return type;
+    }
+
+    public void setType(String type) {
+        this.type = type;
     }
 }
