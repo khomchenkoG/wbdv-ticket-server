@@ -28,6 +28,11 @@ DELETE /api/users/{username}/events/{eId}
 
 GET /api/users/{username}/event
 
+===================EVENT REVIEWS====================
+====================================================
+
+GET /api/events/{eventId}/reviews
+
 ===================USERS REVIEWS====================
 ====================================================
 
