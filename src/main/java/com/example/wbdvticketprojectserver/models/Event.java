@@ -32,10 +32,20 @@ public class Event {
     @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE, orphanRemoval = true)
     private List<Listing> listings = new ArrayList<>();
 
-
     @ManyToMany(mappedBy = "events")
     @JsonIgnore
     List<User> followers;
+
+    @OneToMany(mappedBy = "event", cascade = CascadeType.REMOVE, orphanRemoval = true)
+    private List<EventReview> reviews = new ArrayList<>();
+
+    public List<EventReview> getReviews() {
+        return reviews;
+    }
+
+    public void setReviews(List<EventReview> reviews) {
+        this.reviews = reviews;
+    }
 
     public List<Listing> getListings() {
         return listings;
